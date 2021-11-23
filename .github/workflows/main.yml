@@ -5,6 +5,9 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
 jobs:
   build-and-deploy:
     name: Firebase Deploy

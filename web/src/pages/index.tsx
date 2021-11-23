@@ -9,9 +9,12 @@ const AuthButton: React.FC = () => {
 
   if (currentUser)
     return (
-      <Button variant='contained' onClick={() => auth.signOut()}>
-        Sign Out
-      </Button>
+      <>
+        <Button variant='contained' onClick={() => auth.signOut()}>
+          Sign Out
+        </Button>
+        UID : {currentUser.uid}
+      </>
     )
 
   return (
@@ -26,18 +29,18 @@ const AuthButton: React.FC = () => {
   )
 }
 
-export default function Home() {
-  return (
-    <Container style={{ marginTop: 200, textAlign: 'center' }}>
-      <Head>
-        <title>Firebase NextJS Template</title>
-      </Head>
+const Home: React.FC = () => (
+  <Container style={{ marginTop: 200, textAlign: 'center' }}>
+    <Head>
+      <title>Firebase NextJS Template</title>
+    </Head>
 
-      <Typography style={{ marginBottom: 20 }} variant='body1'>
-        This is HOME
-      </Typography>
+    <Typography style={{ marginBottom: 20 }} variant='body1'>
+      This is HOME
+    </Typography>
 
-      <AuthButton />
-    </Container>
-  )
-}
+    <AuthButton />
+  </Container>
+)
+
+export default Home

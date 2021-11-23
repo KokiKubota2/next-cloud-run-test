@@ -58,7 +58,7 @@ export const useFirebase = () => {
 
     // unsubscribe to the listener when unmounting
     return () => {
-      _.forEach([authUnsub], (u) => u())
+      _.forEach([authUnsub], (u: any) => u())
     }
   }, [auth])
 

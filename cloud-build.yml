@@ -1,0 +1,12 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      [
+        'build',
+        '-f',
+        'Dockerfile',
+        '-t',
+        'gcr.io/next-cloud-run-test/wizardly_brown:latest',
+        '.',
+      ]
+images: ['gcr.io/next-cloud-run-test/wizardly_brown']

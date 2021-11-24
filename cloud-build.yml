@@ -40,3 +40,4 @@ steps:
         'asia-northeast1',
       ]
 images: ['gcr.io/next-cloud-run-test/test']
+timeout: '1600s'

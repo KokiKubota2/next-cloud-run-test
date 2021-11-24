@@ -13,7 +13,7 @@ const AuthButton: React.FC = () => {
         <Button variant='contained' onClick={() => auth.signOut()}>
           Sign Out
         </Button>
-        UID : {currentUser.uid}
+        <p>UID : {currentUser.uid}</p>
       </>
     )
 

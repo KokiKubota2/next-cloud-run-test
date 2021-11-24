@@ -12,8 +12,6 @@ const config = {
   appId: process.env.NEXT_PUBLIC_APP_ID,
 }
 
-console.log(config)
-
 let app
 if (_.isEmpty(getApps())) app = initializeApp(config)
 

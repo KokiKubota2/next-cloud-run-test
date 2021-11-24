@@ -1,12 +1,27 @@
 steps:
-  - name: gcr.io/cloud-builders/docker
-    args:
-      [
-        'build',
-        '-f',
-        'Dockerfile',
-        '-t',
-        'gcr.io/next-cloud-run-test/test:latest',
-        '.',
-      ]
-images: ['gcr.io/next-cloud-run-test/test']
+  - name: node:14.15.4
+    entrypoint: yarn
+  - name: node:14.15.4
+    entrypoint: yarn
+    args: ['create-env']
+    env:
+      - 'NEXT_PUBLIC_API_KEY=${_NEXT_PUBLIC_API_KEY}'
+      - 'NEXT_PUBLIC_AUTH_DOMAIN=${_NEXT_PUBLIC_AUTH_DOMAIN}'
+      - 'NEXT_PUBLIC_PROJECT_ID=${_NEXT_PUBLIC_PROJECT_ID}'
+      - 'NEXT_PUBLIC_STORAGE_BUCKET=${_NEXT_PUBLIC_STORAGE_BUCKET}'
+      - 'NEXT_PUBLIC_MESSAGING_SENDER_ID=${_NEXT_PUBLIC_MESSAGING_SENDER_ID}'
+      - 'NEXT_PUBLIC_APP_ID=${_NEXT_PUBLIC_APP_ID}'
+  - name: gcr.io/next-cloud-run-test/test:latest
+    args: ['app', 'deploy']
+# steps:
+#   - name: gcr.io/cloud-builders/docker
+#     args:
+#       [
+#         'build',
+#         '-f',
+#         'Dockerfile',
+#         '-t',
+#         'gcr.io/next-cloud-run-test/test:latest',
+#         '.',
+#       ]
+# images: ['gcr.io/next-cloud-run-test/test']

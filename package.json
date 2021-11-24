@@ -7,7 +7,8 @@
     "lint": "next lint",
     "build": "next build ./web",
     "deploy": "yarn build && firebase deploy",
-    "start": "next start ./web"
+    "start": "next start ./web",
+    "create-env": "printenv > web/.env"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",

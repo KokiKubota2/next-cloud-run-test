@@ -18,13 +18,15 @@ steps:
         '-f',
         'Dockerfile',
         '-t',
-        'gcr.io/next-cloud-run-test/test:latest',
+        'gcr.io/${_NEXT_PUBLIC_PROJECT_ID}/test:latest',
+        '--cache-from',
+        'gcr.io/$PROJECT_ID/test:latest',
         '.',
       ]
 
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/next-cloud-run-test/test:latest']
+    args: ['push', 'gcr.io/${_NEXT_PUBLIC_PROJECT_ID}/test:latest']
 
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -33,11 +35,15 @@ steps:
       [
         'run',
         'deploy',
-        'next-cloud-run-test',
+        '${_NEXT_PUBLIC_PROJECT_ID}',
         '--image',
-        'gcr.io/next-cloud-run-test/test:latest',
+        'gcr.io/${_NEXT_PUBLIC_PROJECT_ID}/test:latest',
         '--region',
-        'asia-northeast1',
+        '${_DEPLOY_REGION}',
       ]
-images: ['gcr.io/next-cloud-run-test/test']
+
+  - name: gcr.io/${_NEXT_PUBLIC_PROJECT_ID}/firebase
+    args: ['deploy', '--project=${_NEXT_PUBLIC_PROJECT_ID}']
+
+images: ['gcr.io/${_NEXT_PUBLIC_PROJECT_ID}/test']
 timeout: '1600s'

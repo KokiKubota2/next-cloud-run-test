@@ -20,7 +20,7 @@ steps:
         '-t',
         'gcr.io/${_NEXT_PUBLIC_PROJECT_ID}/test:latest',
         '--cache-from',
-        'gcr.io/$PROJECT_ID/test:latest',
+        'gcr.io/${_NEXT_PUBLIC_PROJECT_ID}/test:latest',
         '.',
       ]
 

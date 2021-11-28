@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev ./web",
     "lint": "next lint",
-    "build": "rm -rf .next && next build ./web",
+    "build": "next build ./web",
     "deploy": "yarn build && firebase deploy",
     "start": "next start ./web",
     "create-env": "printenv > web/.env"

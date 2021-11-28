@@ -1,14 +1,31 @@
-# Base Layer
-FROM node:14.17.0-slim AS base
-WORKDIR .
-RUN yarn --frozen-lockfile
-
+#==================================================
 # Build Layer
-FROM base AS build
-WORKDIR .
+FROM node:14-slim as build
+
+WORKDIR /app
+
+COPY package.json yarn.lock ./
+
+RUN yarn --non-interactive --frozen-lockfile
+
+COPY . .
+
 RUN yarn build
 
-# Production Run Layer
+#==================================================
+# Package install Layer
+FROM node:14-slim as node_modules
+
+WORKDIR /app
+
+COPY package.json yarn.lock ./
+
+RUN yarn --non-interactive --frozen-lockfile
+
+#==================================================
+# Run Layer
 FROM gcr.io/distroless/nodejs:14
-WORKDIR .
+
+WORKDIR /app
+
 CMD yarn start

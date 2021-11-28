@@ -16,8 +16,6 @@ steps:
     args:
       [
         'build',
-        '-f',
-        'Dockerfile',
         '-t',
         'gcr.io/${_NEXT_PUBLIC_PROJECT_ID}/test:latest',
         '--cache-from',

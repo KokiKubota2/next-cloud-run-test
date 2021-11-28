@@ -1,21 +1,32 @@
-# Install production dependencies.
-FROM node:alpine AS deps
+# Base Layer
+FROM node:14.17.0-slim AS base
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
 
-# Copy local code to the container image.
-FROM node:alpine AS builder
-WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn --frozen-lockfile
 COPY . .
-COPY --from=deps /app/node_modules ./node_modules
+
+# Build Layer
+FROM base AS build
+WORKDIR /build
+
+COPY --from=base /app ./
 RUN yarn build
 
-# Run the web service on container startup.
-FROM node:alpine AS runner
+# Package install Layer
+FROM node:14.17.0-slim AS node_modules
+
+WORKDIR /modules
+
+COPY package.json yarn.lock ./
+RUN yarn install --non-interactive --frozen-lockfile --production
+
+# Production Run Layer
+FROM gcr.io/distroless/nodejs:14
 WORKDIR /app
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-CMD yarn start
+
+COPY package.json yarn.lock next.config.js ./
+COPY --from=build /build/public ./public
+COPY --from=build /build/.next ./.next
+COPY --from=node_modules /modules/node_modules ./node_modules
+CMD ["node_modules/.bin/next start"]

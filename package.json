@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev ./web",
+    "dev": "next dev",
     "lint": "next lint",
-    "build": "next build ./web",
+    "build": "next build",
     "deploy": "yarn build && firebase deploy",
-    "start": "next start ./web",
-    "create-env": "printenv > web/.env"
+    "start": "next start",
+    "create-env": "printenv > .env"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",

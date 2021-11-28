@@ -20,12 +20,17 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn --non-interactive --frozen-lockfile
+RUN yarn install --non-interactive --frozen-lockfile
 
 #==================================================
 # Run Layer
-FROM gcr.io/distroless/nodejs:14
+FROM node:14-slim
 
 WORKDIR /app
+
+COPY package.json yarn.lock next.config.js ./
+
+COPY --from=build /app/build /app/build
+COPY --from=node_modules /app/node_modules /app/node_modules
 
 CMD yarn start

@@ -4,13 +4,14 @@ FROM node:alpine
 # Create and change to the app directory.
 WORKDIR .
 
-# Install production dependencies.
-RUN yarn --production --frozen-lockfile && yarn cache clean
-
 # Copy application dependency manifests to the container image.
 # A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
 # Copying this first prevents re-running npm install on every code change.
 COPY . .
+
+
+# Install production dependencies.
+RUN yarn --production --frozen-lockfile && yarn cache clean
 
 # Copy local code to the container image.
 RUN yarn build

@@ -10,7 +10,7 @@ WORKDIR .
 COPY . .
 
 # Install production dependencies.
-RUN yarn --frozen-lockfile && yarn cache clean
+RUN yarn
 
 # Copy local code to the container image.
 RUN yarn build

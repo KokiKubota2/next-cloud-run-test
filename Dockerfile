@@ -9,9 +9,8 @@ WORKDIR .
 # Copying this first prevents re-running npm install on every code change.
 COPY . .
 
-
 # Install production dependencies.
-RUN yarn --production --frozen-lockfile && yarn cache clean
+RUN yarn --frozen-lockfile && yarn cache clean
 
 # Copy local code to the container image.
 RUN yarn build

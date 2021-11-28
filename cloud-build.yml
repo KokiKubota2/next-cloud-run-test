@@ -3,6 +3,7 @@ steps:
     entrypoint: yarn
     args: ['create-env']
     env:
+      - 'TZ=Asia/Tokyo'
       - 'NEXT_PUBLIC_API_KEY=${_NEXT_PUBLIC_API_KEY}'
       - 'NEXT_PUBLIC_AUTH_DOMAIN=${_NEXT_PUBLIC_AUTH_DOMAIN}'
       - 'NEXT_PUBLIC_PROJECT_ID=${_NEXT_PUBLIC_PROJECT_ID}'

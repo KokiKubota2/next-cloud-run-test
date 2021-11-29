@@ -20,7 +20,7 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn install --non-interactive --frozen-lockfile
+RUN yarn --non-interactive --frozen-lockfile
 
 #==================================================
 # Run Layer

@@ -8,8 +8,9 @@
 - Firebase Management API
 - Firebase Hosting API
 - Cloud Resource Manager API
+- Artifact Registry API
 
-https://console.cloud.google.com/flows/enableapi?apiid=cloudbuild.googleapis.com,run.googleapis.com,containerregistry.googleapis.com,firebase.googleapis.com,firebasehosting.googleapis.com,cloudresourcemanager.googleapis.com
+https://console.cloud.google.com/flows/enableapi?apiid=artifactregistry.googleapis.com,cloudbuild.googleapis.com,run.googleapis.com,containerregistry.googleapis.com,firebase.googleapis.com,firebasehosting.googleapis.com,cloudresourcemanager.googleapis.com
 
 ### 必要な IAM
 
@@ -22,6 +23,9 @@ https://console.cloud.google.com/flows/enableapi?apiid=cloudbuild.googleapis.com
 - Firebase 管理者
 - サービス アカウント ユーザー
 - ストレージ管理
+- (Cloud Functions 管理者)
+- (Cloud Functions 開発者)
+- (Cloud Scheduler 管理者)
 
 ### firebase コミュニティ ビルダーの設定
 
@@ -44,6 +48,8 @@ https://cloud.google.com/build/docs/deploying-builds/deploy-firebase#using_the_f
   - \_NEXT_PUBLIC_STORAGE_BUCKET
   - \_NEXT_PUBLIC_MESSAGING_SENDER_ID
   - \_NEXT_PUBLIC_APP_ID
+
+※ cloud-build.yml を参照
 
 ### Cloud Run
 
